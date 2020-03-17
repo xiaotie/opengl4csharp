@@ -5,3 +5,9 @@
 *.suo
 /BindingsGen
 /.vs
+bin
+obj
+Debug
+Release
+old/
+tutorials/.vscode/launch.json
