@@ -13,6 +13,8 @@ private static float angle;
 
 void OnDisplay(GlWindow window)
 {
+    Gl.Enable(EnableCap.DepthTest);
+    
     // compile the shader program
     program = new ShaderProgram(Shaders.DefaultVertexShader, Shaders.DefaultColorFragmentShader);
 
