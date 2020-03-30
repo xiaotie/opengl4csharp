@@ -11184,7 +11184,7 @@ namespace OpenGL
         /// <param name="data">
         /// Returns the pixel data.
         /// </param>
-        public static void ReadPixels(Int32 x, Int32 y, Int32 width, Int32 height, OpenGL.PixelFormat format, OpenGL.PixelType type, Int32[] data)
+        public static void ReadPixels(Int32 x, Int32 y, Int32 width, Int32 height, OpenGL.PixelFormat format, OpenGL.PixelType type, IntPtr data)
         {
             Delegates.glReadPixels(x, y, width, height, format, type, data);
         }

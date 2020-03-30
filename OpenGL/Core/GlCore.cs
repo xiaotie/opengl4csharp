@@ -816,7 +816,7 @@ namespace OpenGL
             [DllImport(Gl.Library, EntryPoint = "glNamedFramebufferReadBuffer", ExactSpelling = true)]
             internal extern static void NamedFramebufferReadBuffer(OpenGL.ReadBufferMode framebuffer, OpenGL.BeginMode mode);
             [DllImport(Gl.Library, EntryPoint = "glReadPixels", ExactSpelling = true)]
-            internal extern static void ReadPixels(Int32 x, Int32 y, Int32 width, Int32 height, OpenGL.PixelFormat format, OpenGL.PixelType type, Int32[] data);
+            internal extern static void ReadPixels(Int32 x, Int32 y, Int32 width, Int32 height, OpenGL.PixelFormat format, OpenGL.PixelType type, IntPtr data);
             [DllImport(Gl.Library, EntryPoint = "glReadnPixels", ExactSpelling = true)]
             internal extern static void ReadnPixels(Int32 x, Int32 y, Int32 width, Int32 height, OpenGL.PixelFormat format, OpenGL.PixelType type, Int32 bufSize, Int32[] data);
             [DllImport(Gl.Library, EntryPoint = "glRenderbufferStorage", ExactSpelling = true)]

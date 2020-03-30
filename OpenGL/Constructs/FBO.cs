@@ -156,6 +156,28 @@ namespace OpenGL
         }
 
         /// <summary>
+        /// 设置当前为 OpenGL 的绘制 Context
+        /// </summary>
+        public void MakeContext()
+        {
+            Gl.BindFramebuffer(FramebufferTarget.Framebuffer, BufferID);
+        }
+
+        /// <summary>
+        /// 重置 OpenGL 的绘制 Context
+        /// </summary>
+        public void ResetContext()
+        {
+            Gl.BindFramebuffer(FramebufferTarget.Framebuffer, 0);
+        }
+
+        public void ReadPixels(IntPtr pData)
+        {
+            Gl.ReadBuffer(ReadBufferMode.ColorAttachment0);
+            Gl.ReadPixels(0, 0, Size.Width, Size.Height, OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, (IntPtr)pData);
+        }
+
+        /// <summary>
         /// Check to ensure that the FBO was disposed of properly.
         /// </summary>
         ~FBO()

@@ -29,6 +29,20 @@ namespace Glfw3
         }
 
         /// <summary>
+        /// 初始化离线渲染窗口环境。
+        /// </summary>
+        /// <returns>拥有离线渲染环境的隐藏窗口</returns>
+        public static Window InitOffScreenRendering()
+        {
+            Glfw.Init();
+            Glfw.WindowHint(Glfw.Hint.Visible, false);
+            var window = Glfw.CreateWindow(100, 100, "");
+            Glfw.MakeContextCurrent(window);
+            Utils.glewInit();
+            return window;
+        }
+
+        /// <summary>
         /// GLFW_DONT_CARE
         /// </summary>
         public readonly static int DontCare = -1;

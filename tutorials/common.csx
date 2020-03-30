@@ -1,6 +1,16 @@
 #r "../Glfw/bin/Debug/netstandard2.0/Glfw.dll"
 #r "../OpenGL/bin/Debug/netstandard2.0/ImageSharp.dll"
 #r "../OpenGL/bin/Debug/netstandard2.0/OpenGL.dll"
+#r "../lib/Geb.UI.dll"
+#r "../lib/Geb.Image.dll"
+#r "../lib/Geb.Image.Utils.dll"
+#r "../lib/ExCSS.dll"
+#r "../lib/Geb.UI.Plot.dll"
+#r "../lib/Geb.UI.D2D.dll"
+#r "nuget: SharpDX, 4.2.0"
+#r "nuget: SharpDX.Direct2D1, 4.2.0"
+#r "nuget: SharpDX.Direct3D11, 4.2.0"
+#r "nuget: SharpGen.Runtime, 1.1.2"
 
 using Glfw3;
 using OpenGL;

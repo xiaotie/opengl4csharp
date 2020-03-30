@@ -13,6 +13,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Update="glew32.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="glfw3.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

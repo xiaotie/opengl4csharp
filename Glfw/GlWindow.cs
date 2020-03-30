@@ -7,9 +7,6 @@ namespace Glfw3
 {
     public class GlWindow
     {
-        [DllImport("glew32.dll")]
-        public static extern int glewInit();
-
         public bool UseGlew { get; set; } = true;
 
         public int Width { get; set; }
@@ -56,9 +53,9 @@ namespace Glfw3
                 Environment.Exit(-1);
             }
 
-            if(UseGlew == true) glewInit();
-
             Glfw.MakeContextCurrent(_window);
+
+            if (UseGlew == true) Utils.glewInit();
 
             OnDisplay();
 

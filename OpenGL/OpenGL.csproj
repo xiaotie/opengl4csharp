@@ -34,7 +34,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>bin\Release\netstandard1.4\OpenGL.xml</DocumentationFile>
-    <DefineConstants>RELEASE;NETSTANDARD1_4;USE_NUMERICS</DefineConstants>
+    <DefineConstants>RELEASE;NETSTANDARD1_4</DefineConstants>
   </PropertyGroup>
 
 </Project>
