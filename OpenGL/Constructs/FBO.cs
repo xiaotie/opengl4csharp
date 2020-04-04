@@ -177,6 +177,14 @@ namespace OpenGL
             Gl.ReadPixels(0, 0, Size.Width, Size.Height, OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, (IntPtr)pData);
         }
 
+        public unsafe void ReadPixels(Byte[] data)
+        {
+            fixed(Byte* pData = data)
+            {
+                ReadPixels((IntPtr)pData);
+            }
+        }
+
         /// <summary>
         /// Check to ensure that the FBO was disposed of properly.
         /// </summary>

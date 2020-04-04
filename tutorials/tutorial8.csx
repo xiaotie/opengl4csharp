@@ -9,10 +9,10 @@ private static ShaderProgram program;
 private static VBO<Vector3> cube, cubeNormals;
 private static VBO<Vector2> cubeUV;
 private static VBO<uint> cubeQuads;
-private static Texture crateTexture;
+private static Texture glassTexture;
 private static System.Diagnostics.Stopwatch watch;
 private static float xangle, yangle;
-private static bool autoRotate, lighting = true, fullscreen = false;
+private static bool autoRotate, lighting = true, fullscreen = false, alpha = true;
 private static bool left, right, up, down;
 
 void OnDisplay(GlWindow window)
@@ -26,7 +26,7 @@ void OnDisplay(GlWindow window)
     program["light_direction"].SetValue(new Vector3(0, 0, 1));
     program["enable_lighting"].SetValue(lighting);
 
-    crateTexture = new Texture("./data/crate.jpg");
+    glassTexture = new Texture("data/glass.bmp");
 
     cube = new VBO<Vector3>(new Vector3[] {
                 new Vector3(1, 1, -1), new Vector3(-1, 1, -1), new Vector3(-1, 1, 1), new Vector3(1, 1, 1),         // top
@@ -51,6 +51,8 @@ void OnDisplay(GlWindow window)
                 new Vector2(0, 0), new Vector2(1, 0), new Vector2(1, 1), new Vector2(0, 1) });
 
     cubeQuads = new VBO<uint>(new uint[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 }, BufferTarget.ElementArrayBuffer);
+
+
     watch = System.Diagnostics.Stopwatch.StartNew();
 }
 
@@ -60,7 +62,7 @@ void OnClose()
     cubeNormals.Dispose();
     cubeUV.Dispose();
     cubeQuads.Dispose();
-    crateTexture.Dispose();
+    glassTexture.Dispose();
     program.DisposeChildren = true;
     program.Dispose();
 }
@@ -88,7 +90,7 @@ void OnRenderFrame(GlWindow window)
 
     // make sure the shader program and texture are being used
     Gl.UseProgram(program);
-    Gl.BindTexture(crateTexture);
+    Gl.BindTexture(glassTexture);
 
     // set up the model matrix and draw the cube
     program["model_matrix"].SetValue(Matrix4.CreateRotationY(yangle) * Matrix4.CreateRotationX(xangle));
@@ -138,6 +140,20 @@ void OnRenderFrame(GlWindow window)
 //             Glut.glutReshapeWindow(1280, 720);
 //         }
 //     }
+//     else if (key == 'b')
+//     {
+//         alpha = !alpha;
+//         if (alpha)
+//         {
+//             Gl.Enable(EnableCap.Blend);
+//             Gl.Disable(EnableCap.DepthTest);
+//         }
+//         else
+//         {
+//             Gl.Disable(EnableCap.Blend);
+//             Gl.Enable(EnableCap.DepthTest);
+//         }
+//     }
 // }
 
 public static string VertexShader = @"
@@ -181,7 +197,8 @@ void main(void)
     float ambient = 0.3;
     float lighting = (enable_lighting ? max(diffuse, ambient) : 1);
 
-    fragment = lighting * texture2D(texture, uv);
+    // add in some blending for tutorial 8 by setting the alpha to 0.5
+    fragment = vec4(lighting * texture2D(texture, uv).xyz, 0.5);
 }
 ";
 
